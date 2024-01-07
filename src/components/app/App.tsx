@@ -14,10 +14,13 @@ const App = () => {
   const [list, setList] = useState(DEFAULT_TODO_LIST);
   const [listIdForEdit, setListIdForEdit] = useState<Todo['id'] | null>(null)
   const addTask = ({ name, description }: Omit<Todo, "checked" | "id">) => {
-    setList([
-      ...list,
-      { id: list[list.length - 1].id + 1, description, name, checked: false },
-    ]);
+    if(name.length && description.length > 0) {
+      setList([
+        ...list,
+        { id: list[list.length - 1].id + 1, description, name, checked: false },
+      ]);
+    } else return
+    
   };
 
 
